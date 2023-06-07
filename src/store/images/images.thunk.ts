@@ -25,3 +25,18 @@ export const getListImage = dispatchable(() => {
         }
     }
 })
+
+export const deleteImage = dispatchable((id: number) => {
+    return async (dispatch: Dispatch<Action>) => {
+        try {
+            dispatch(actions['image/delete'](id))
+            return {
+                success: true
+            }
+        } catch (error) {
+            return {
+                success: false
+            }
+        }
+    }
+})

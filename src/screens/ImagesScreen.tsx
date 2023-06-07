@@ -14,6 +14,10 @@ const ImagesScreen = () => {
     setLoading(false);
   }
 
+  const handleDeleteImage = async (id: number) => {
+    await actions.image.deleteImage(id);
+  }
+
   return (
     <ScrollView>
       <Text style={{ color: 'black' }}>Redux Öğreniyorum - ImagesScreen</Text>
@@ -26,9 +30,10 @@ const ImagesScreen = () => {
             {
               listImages.map((value) => {
                 return (
-                  <View key={value.id}>
+                  <View key={value.id} style={{ marginTop: 15 }}>
                     <Text style={{ color: 'black' }}>{value.title}</Text>
                     <Image source={{ uri: value.thumbnailUrl }} style={{ width: 120, height: 120 }} />
+                    <Button title='Delete Image' color={"red"} onPress={async () => handleDeleteImage(value.id)} />
                   </View>
                 )
               })
